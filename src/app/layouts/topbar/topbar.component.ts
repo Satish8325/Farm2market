@@ -12,6 +12,7 @@ import { Observable, map } from 'rxjs';
 import { changesLayout } from 'src/app/store/layouts/layout.actions';
 import { getLayoutMode } from 'src/app/store/layouts/layout.selector';
 import { RootReducerState } from 'src/app/store';
+import { LocalStorageService } from 'src/app/core/services/localStorage.service';
 
 @Component({
   selector: 'app-topbar',
@@ -38,6 +39,7 @@ export class TopbarComponent implements OnInit {
     private authFackservice: AuthfakeauthenticationService,
     public languageService: LanguageService,
     public translate: TranslateService,
+    public localStorageService: LocalStorageService,
     public _cookiesService: CookieService, public store: Store<RootReducerState>) {
 
   }
@@ -104,7 +106,8 @@ export class TopbarComponent implements OnInit {
     } else {
       this.authFackservice.logout();
     }
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/login']);
+    this.localStorageService.clearData();
   }
 
   /**

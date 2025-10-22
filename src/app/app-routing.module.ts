@@ -9,17 +9,19 @@ import { ProductsComponent } from './pages/ecommerce/products/products.component
 import { LoginComponent } from './account/auth/login/login.component';
 
 const routes: Routes = [
-   { path: 'auth/login', component: LoginComponent },
-  { path: 'auth', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
-  { path: '', component: LayoutComponent, loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule), canActivate: [AuthGuard]},
+   { path: 'login', component: LoginComponent },
+   {path : '', redirectTo: 'login',pathMatch: 'full'},
+  { path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
+  { path: 'ecommerce', component: LayoutComponent, loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule), canActivate: [AuthGuard]},
   { path: 'pages', loadChildren: () => import('./extrapages/extrapages.module').then(m => m.ExtrapagesModule), canActivate: [AuthGuard] },
   { path: 'crypto-ico-landing', component: CyptolandingComponent },
   { path: '**', component: Page404Component },
-  { path: 'produts', component: ProductsComponent, canActivate: [AuthGuard] },
+   
+  // { path: 'produts', component: ProductsComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top', useHash: true })],
   exports: [RouterModule]
 })
 

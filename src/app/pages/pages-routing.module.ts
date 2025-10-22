@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'products' },
+  // { path: '', redirectTo: 'ecommerce' },
   
-  { path: 'ecommerce', loadChildren: () => import('./ecommerce/ecommerce.module').then(m => m.EcommerceModule) },
+  { path: '', loadChildren: () => import('./ecommerce/ecommerce.module').then(m => m.EcommerceModule) },
 
 ];
 
